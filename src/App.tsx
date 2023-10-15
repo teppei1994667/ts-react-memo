@@ -1,5 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { InputMemo } from "./components/InputMemo";
+import { MemoList } from "./components/MemoList";
 
 export const App = () => {
   return (
@@ -12,6 +13,11 @@ export const App = () => {
       <Grid container justifyContent="center" sx={{ marginTop: "50px" }}>
         <Grid item>
           <InputMemo />
+        </Grid>
+      </Grid>
+      <Grid container justifyContent="center" sx={{ marginTop: "30px" }}>
+        <Grid item>
+          <MemoList />
         </Grid>
       </Grid>
     </>
