@@ -1,5 +1,15 @@
+import { Grid, Typography } from "@mui/material";
+
 export const App = () => {
-  return <h1>簡単メモアプリ</h1>
-}
+  return (
+    <>
+      <Grid container justifyContent="center">
+        <Grid item>
+          <Typography variant="h3">簡単メモアプリ</Typography>
+        </Grid>
+      </Grid>
+    </>
+  );
+};
 
 export default App;
