@@ -1,4 +1,5 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
+import { MemoItem } from "./MemoItem";
 
 export const MemoList = () => {
   return (
@@ -17,6 +18,7 @@ export const MemoList = () => {
             <Typography variant="h5">メモ一覧</Typography>
           </Grid>
         </Grid>
+        <MemoItem />
       </Paper>
     </>
   );
