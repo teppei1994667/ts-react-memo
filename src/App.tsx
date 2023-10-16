@@ -1,8 +1,11 @@
 import { Grid, Typography } from "@mui/material";
 import { InputMemo } from "./components/InputMemo";
 import { MemoList } from "./components/MemoList";
+import { useState } from "react";
 
 export const App = () => {
+  const [memoItemArray, setMemoItemArray] = useState<string[]>([]);
+
   return (
     <>
       <Grid container justifyContent="center">
@@ -12,12 +15,15 @@ export const App = () => {
       </Grid>
       <Grid container justifyContent="center" sx={{ marginTop: "50px" }}>
         <Grid item>
-          <InputMemo />
+          <InputMemo
+            setMemoItemArray={setMemoItemArray}
+            memoItemArray={memoItemArray}
+          />
         </Grid>
       </Grid>
       <Grid container justifyContent="center" sx={{ marginTop: "30px" }}>
         <Grid item>
-          <MemoList />
+          <MemoList memoItemArray={memoItemArray} />
         </Grid>
       </Grid>
     </>

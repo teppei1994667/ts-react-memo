@@ -1,7 +1,11 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import { MemoItem } from "./MemoItem";
 
-export const MemoList = () => {
+export type MemoListfProps = {
+  memoItemArray: string[];
+};
+
+export const MemoList = (props: MemoListfProps) => {
   return (
     <>
       <Paper
@@ -18,7 +22,7 @@ export const MemoList = () => {
             <Typography variant="h5">メモ一覧</Typography>
           </Grid>
         </Grid>
-        <MemoItem />
+        <MemoItem memoItemArray={props.memoItemArray} />
       </Paper>
     </>
   );
