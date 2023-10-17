@@ -9,6 +9,7 @@ export type MemoListfProps = {
 
 export const MemoList = (props: MemoListfProps) => {
   const { memoArray, setMemoArray } = props;
+  console.log("memoArray", memoArray);
   return (
     <>
       <Paper
@@ -29,6 +30,7 @@ export const MemoList = (props: MemoListfProps) => {
           <Box key={index}>
             <MemoItem
               memoItem={memoItem}
+              memoArray={memoArray}
               setMemoArray={setMemoArray}
               memoIndex={index}
             />

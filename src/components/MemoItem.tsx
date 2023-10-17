@@ -4,15 +4,17 @@ import { Dispatch } from "react";
 export type MemoItemProps = {
   memoItem: string;
   memoIndex: number;
+  memoArray: string[];
   setMemoArray: Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const MemoItem = (props: MemoItemProps) => {
-  const { memoItem, memoIndex, setMemoArray } = props;
+  const { memoItem, memoIndex, memoArray, setMemoArray } = props;
   const memoItemId = `memoDel${memoIndex}`;
   const memoDelOnClick = (memoIndex: number) => {
-    console.log("memoIndex", memoIndex);
-    setMemoArray((prev) => prev.splice(memoIndex, 1));
+    const newMemos = [...memoArray];
+    newMemos.splice(memoIndex, 1);
+    setMemoArray(newMemos);
   };
   return (
     <>
