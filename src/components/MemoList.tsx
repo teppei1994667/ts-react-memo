@@ -1,11 +1,14 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import { MemoItem } from "./MemoItem";
+import { Dispatch } from "react";
 
 export type MemoListfProps = {
-  memoItemArray: string[];
+  memoArray: string[];
+  setMemoArray: Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const MemoList = (props: MemoListfProps) => {
+  const { memoArray, setMemoArray } = props;
   return (
     <>
       <Paper
@@ -22,7 +25,15 @@ export const MemoList = (props: MemoListfProps) => {
             <Typography variant="h5">メモ一覧</Typography>
           </Grid>
         </Grid>
-        <MemoItem memoItemArray={props.memoItemArray} />
+        {memoArray.map((memoItem, index) => (
+          <Box key={index}>
+            <MemoItem
+              memoItem={memoItem}
+              setMemoArray={setMemoArray}
+              memoIndex={index}
+            />
+          </Box>
+        ))}
       </Paper>
     </>
   );

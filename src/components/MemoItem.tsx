@@ -1,23 +1,35 @@
 import { Button, Grid, Typography } from "@mui/material";
+import { Dispatch } from "react";
 
 export type MemoItemProps = {
-  memoItemArray: string[];
+  memoItem: string;
+  memoIndex: number;
+  setMemoArray: Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const MemoItem = (props: MemoItemProps) => {
-  const { memoItemArray } = props;
+  const { memoItem, memoIndex, setMemoArray } = props;
+  const memoItemId = `memoDel${memoIndex}`;
+  const memoDelOnClick = (memoIndex: number) => {
+    console.log("memoIndex", memoIndex);
+    setMemoArray((prev) => prev.splice(memoIndex, 1));
+  };
   return (
     <>
-      {memoItemArray.map((memoItem) => (
-        <Grid container justifyContent="center" sx={{ marginTop: "20px" }}>
-          <Grid item>
-            <Typography variant="h6">{memoItem}</Typography>
-          </Grid>
-          <Grid item sx={{ marginLeft: "20px" }}>
-            <Button variant="outlined">削除</Button>
-          </Grid>
+      <Grid container justifyContent="center" sx={{ marginTop: "20px" }}>
+        <Grid item>
+          <Typography variant="h6">{memoItem}</Typography>
         </Grid>
-      ))}
+        <Grid item sx={{ marginLeft: "20px" }}>
+          <Button
+            id={memoItemId}
+            variant="outlined"
+            onClick={() => memoDelOnClick(memoIndex)}
+          >
+            削除
+          </Button>
+        </Grid>
+      </Grid>
     </>
   );
 };

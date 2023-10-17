@@ -3,13 +3,11 @@ import { Dispatch, useState } from "react";
 
 export type InputMemoProps = {
   memoItemArray: string[];
-  setMemoItemArray: Dispatch<React.SetStateAction<string[]>>;
+  setMemoArray: Dispatch<React.SetStateAction<string[]>>;
 };
 
-// const memoItemArray: string[] = [];
-
 export const InputMemo = (props: InputMemoProps) => {
-  const { memoItemArray, setMemoItemArray } = props;
+  const { memoItemArray, setMemoArray } = props;
 
   const [inputMemoText, setInputMemoText] = useState("");
 
@@ -18,7 +16,7 @@ export const InputMemo = (props: InputMemoProps) => {
   };
 
   const addMemoOnClick = () => {
-    setMemoItemArray([...memoItemArray, inputMemoText]);
+    setMemoArray([...memoItemArray, inputMemoText]);
     setInputMemoText("");
   };
   console.log("memoItemArray", memoItemArray);
@@ -37,7 +35,7 @@ export const InputMemo = (props: InputMemoProps) => {
         item
         sx={{ marginLeft: "50px", display: "flex", alignItems: "center" }}
       >
-        <Button variant="outlined" onClick={addMemoOnClick}>
+        <Button id="addMemo" variant="outlined" onClick={addMemoOnClick}>
           追加
         </Button>
       </Grid>

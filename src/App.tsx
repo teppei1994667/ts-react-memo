@@ -4,8 +4,7 @@ import { MemoList } from "./components/MemoList";
 import { useState } from "react";
 
 export const App = () => {
-  const [memoItemArray, setMemoItemArray] = useState<string[]>([]);
-
+  const [memoArray, setMemoArray] = useState<string[]>([]);
   return (
     <>
       <Grid container justifyContent="center">
@@ -15,15 +14,12 @@ export const App = () => {
       </Grid>
       <Grid container justifyContent="center" sx={{ marginTop: "50px" }}>
         <Grid item>
-          <InputMemo
-            setMemoItemArray={setMemoItemArray}
-            memoItemArray={memoItemArray}
-          />
+          <InputMemo memoItemArray={memoArray} setMemoArray={setMemoArray} />
         </Grid>
       </Grid>
       <Grid container justifyContent="center" sx={{ marginTop: "30px" }}>
         <Grid item>
-          <MemoList memoItemArray={memoItemArray} />
+          <MemoList memoArray={memoArray} setMemoArray={setMemoArray} />
         </Grid>
       </Grid>
     </>
