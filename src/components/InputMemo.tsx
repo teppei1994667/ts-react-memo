@@ -2,12 +2,12 @@ import { Button, Grid, TextField } from "@mui/material";
 import { Dispatch, useState } from "react";
 
 export type InputMemoProps = {
-  memoItemArray: string[];
+  memoArray: string[];
   setMemoArray: Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const InputMemo = (props: InputMemoProps) => {
-  const { memoItemArray, setMemoArray } = props;
+  const { memoArray, setMemoArray } = props;
 
   const [inputMemoText, setInputMemoText] = useState("");
 
@@ -18,7 +18,9 @@ export const InputMemo = (props: InputMemoProps) => {
 
   // メモ追加ボタンのクリックイベント
   const addMemoOnClick = () => {
-    setMemoArray([...memoItemArray, inputMemoText]);
+    const newMemos = [...memoArray];
+    newMemos.push(inputMemoText);
+    setMemoArray(newMemos);
     setInputMemoText("");
   };
 

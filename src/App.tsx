@@ -14,7 +14,7 @@ export const App = () => {
       </Grid>
       <Grid container justifyContent="center" sx={{ marginTop: "50px" }}>
         <Grid item>
-          <InputMemo memoItemArray={memoArray} setMemoArray={setMemoArray} />
+          <InputMemo memoArray={memoArray} setMemoArray={setMemoArray} />
         </Grid>
       </Grid>
       <Grid container justifyContent="center" sx={{ marginTop: "30px" }}>
