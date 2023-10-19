@@ -10,7 +10,11 @@ export type MemoItemProps = {
 
 export const MemoItem = (props: MemoItemProps) => {
   const { memoItem, memoIndex, memoArray, setMemoArray } = props;
+
+  // 削除ボタンのIDを動的に生成
   const memoItemId = `memoDel${memoIndex}`;
+
+  // 削除ボタンのクリックイベント
   const memoDelOnClick = (memoIndex: number) => {
     const newMemos = [...memoArray];
     newMemos.splice(memoIndex, 1);

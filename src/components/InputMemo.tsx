@@ -11,15 +11,17 @@ export const InputMemo = (props: InputMemoProps) => {
 
   const [inputMemoText, setInputMemoText] = useState("");
 
+  // メモ入力フィールドのチェンジイベント
   const inputMemoOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputMemoText(event.target.value);
   };
 
+  // メモ追加ボタンのクリックイベント
   const addMemoOnClick = () => {
     setMemoArray([...memoItemArray, inputMemoText]);
     setInputMemoText("");
   };
-  console.log("memoItemArray", memoItemArray);
+
   return (
     <Grid container>
       <Grid item sx={{ width: "500px" }}>
