@@ -9,7 +9,6 @@ export type MemoListfProps = {
 
 export const MemoList = (props: MemoListfProps) => {
   const { memoArray, setMemoArray } = props;
-  console.log("memoArray", memoArray);
   return (
     <>
       <Paper
