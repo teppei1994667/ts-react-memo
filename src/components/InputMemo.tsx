@@ -1,38 +1,39 @@
 import { Button, Grid, TextField } from "@mui/material";
-import { Dispatch, useState } from "react";
+import { Dispatch } from "react";
+import { Controller, useForm } from "react-hook-form";
 
 export type InputMemoProps = {
   memoArray: string[];
   setMemoArray: Dispatch<React.SetStateAction<string[]>>;
 };
 
+type memoInput = {
+  memo: string;
+};
+
 export const InputMemo = (props: InputMemoProps) => {
+  const { control, getValues, reset } = useForm<memoInput>({
+    defaultValues: { memo: "" },
+  });
+
   const { memoArray, setMemoArray } = props;
-
-  const [inputMemoText, setInputMemoText] = useState("");
-
-  // メモ入力フィールドのチェンジイベント
-  const inputMemoOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputMemoText(event.target.value);
-  };
 
   // メモ追加ボタンのクリックイベント
   const addMemoOnClick = () => {
-    const newMemos = [...memoArray];
-    newMemos.push(inputMemoText);
-    setMemoArray(newMemos);
-    setInputMemoText("");
+    console.log("clickイベント", getValues("memo"));
+    setMemoArray([...memoArray, getValues("memo")]);
+    reset();
   };
 
   return (
     <Grid container>
       <Grid item sx={{ width: "500px" }}>
-        <TextField
-          value={inputMemoText}
-          fullWidth
-          label="メモ"
-          variant="outlined"
-          onChange={inputMemoOnChange}
+        <Controller
+          name="memo"
+          control={control}
+          render={({ field }) => (
+            <TextField {...field} fullWidth label="メモ" variant="outlined" />
+          )}
         />
       </Grid>
       <Grid
