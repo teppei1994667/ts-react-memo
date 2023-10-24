@@ -20,7 +20,6 @@ export const InputMemo = (props: InputMemoProps) => {
 
   // メモ追加ボタンのクリックイベント
   const addMemoOnClick = () => {
-    console.log("clickイベント", getValues("memo"));
     setMemoArray([...memoArray, getValues("memo")]);
     reset();
   };

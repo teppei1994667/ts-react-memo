@@ -48,8 +48,6 @@ export const MemoEditDialog = (props: MemoEditDialogProps) => {
     setMemoEditDialogOpen(false);
   };
 
-  console.log("memoArray", memoArray);
-  console.log("memoIndex", memoIndex);
   return (
     <>
       <Dialog open={memoEditDialogOpen} onClose={memoEdtOnClose}>

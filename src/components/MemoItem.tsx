@@ -21,7 +21,6 @@ export const MemoItem = (props: MemoItemProps) => {
   //編集ボタンのクリックイベント
   const memoEdtOnClick = () => {
     setMemoEditDialogOpen(true);
-    console.log("memoEdtOnClick", memoArray);
   };
 
   //MemoEditDialogクローズイベント
