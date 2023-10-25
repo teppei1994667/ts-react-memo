@@ -2,13 +2,13 @@ import { Button, Grid, TextField } from "@mui/material";
 import { Dispatch } from "react";
 import { Controller, useForm } from "react-hook-form";
 
+type memoInput = {
+  memo: string;
+};
+
 export type InputMemoProps = {
   memoArray: string[];
   setMemoArray: Dispatch<React.SetStateAction<string[]>>;
-};
-
-type memoInput = {
-  memo: string;
 };
 
 export const InputMemo = (props: InputMemoProps) => {
@@ -20,14 +20,13 @@ export const InputMemo = (props: InputMemoProps) => {
 
   // メモ追加ボタンのクリックイベント
   const addMemoOnClick = () => {
-    console.log("clickイベント", getValues("memo"));
     setMemoArray([...memoArray, getValues("memo")]);
     reset();
   };
 
   return (
     <Grid container>
-      <Grid item sx={{ width: "500px" }}>
+      <Grid item sx={{ width: "400px" }}>
         <Controller
           name="memo"
           control={control}

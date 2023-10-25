@@ -1,5 +1,6 @@
 import { Button, Grid, Typography } from "@mui/material";
-import { Dispatch } from "react";
+import { Dispatch, useState } from "react";
+import { MemoEditDialog } from "./MemoEditDialog";
 
 export type MemoItemProps = {
   memoItem: string;
@@ -11,8 +12,21 @@ export type MemoItemProps = {
 export const MemoItem = (props: MemoItemProps) => {
   const { memoItem, memoIndex, memoArray, setMemoArray } = props;
 
+  const [memoEditDialogOpen, setMemoEditDialogOpen] = useState(false);
+
   // 削除ボタンのIDを動的に生成
-  const memoItemId = `memoDel${memoIndex}`;
+  const DelBtnId = `memoDel${memoIndex}`;
+  const EdtBtnId = `memoEdt${memoIndex}`;
+
+  //編集ボタンのクリックイベント
+  const memoEdtOnClick = () => {
+    setMemoEditDialogOpen(true);
+  };
+
+  //MemoEditDialogクローズイベント
+  const memoEdtOnClose = () => {
+    setMemoEditDialogOpen(false);
+  };
 
   // 削除ボタンのクリックイベント
   const memoDelOnClick = (memoIndex: number) => {
@@ -27,8 +41,13 @@ export const MemoItem = (props: MemoItemProps) => {
           <Typography variant="h6">{memoItem}</Typography>
         </Grid>
         <Grid item sx={{ marginLeft: "20px" }}>
+          <Button id={EdtBtnId} variant="outlined" onClick={memoEdtOnClick}>
+            編集
+          </Button>
+        </Grid>
+        <Grid item sx={{ marginLeft: "20px" }}>
           <Button
-            id={memoItemId}
+            id={DelBtnId}
             variant="outlined"
             onClick={() => memoDelOnClick(memoIndex)}
           >
@@ -36,6 +55,14 @@ export const MemoItem = (props: MemoItemProps) => {
           </Button>
         </Grid>
       </Grid>
+      <MemoEditDialog
+        memoEditDialogOpen={memoEditDialogOpen}
+        memoEdtOnClose={memoEdtOnClose}
+        memoArray={memoArray}
+        setMemoArray={setMemoArray}
+        memoIndex={memoIndex}
+        setMemoEditDialogOpen={setMemoEditDialogOpen}
+      />
     </>
   );
 };
