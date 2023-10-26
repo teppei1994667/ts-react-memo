@@ -25,8 +25,10 @@ export const MemoEditDialog = (props: MemoEditDialogProps) => {
     defaultValues: { memoEdt: memoArray[memoIndex] },
   });
 
+  //memoArrayの変更をformに適用
   useEffect(() => {
     setValue("memoEdt", memoArray[memoIndex]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [memoArray]);
 
   //メモ編集ボタンのクリックイベント
