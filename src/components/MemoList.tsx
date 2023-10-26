@@ -1,14 +1,12 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import { MemoItem } from "./MemoItem";
-import { Dispatch } from "react";
+import { Dispatch, useContext } from "react";
+import { memoContext } from "../App";
 
-export type MemoListfProps = {
-  memoArray: string[];
-  setMemoArray: Dispatch<React.SetStateAction<string[]>>;
-};
+export type MemoListfProps = {};
 
 export const MemoList = (props: MemoListfProps) => {
-  const { memoArray, setMemoArray } = props;
+  const { memoArray, setMemoArray } = useContext(memoContext);
   return (
     <>
       <Paper
@@ -27,12 +25,7 @@ export const MemoList = (props: MemoListfProps) => {
         </Grid>
         {memoArray.map((memoItem, index) => (
           <Box key={index}>
-            <MemoItem
-              memoItem={memoItem}
-              memoArray={memoArray}
-              setMemoArray={setMemoArray}
-              memoIndex={index}
-            />
+            <MemoItem memoItem={memoItem} memoIndex={index} />
           </Box>
         ))}
       </Paper>

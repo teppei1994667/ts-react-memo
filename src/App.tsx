@@ -1,10 +1,28 @@
 import { Grid, Typography } from "@mui/material";
 import { InputMemo } from "./components/InputMemo";
 import { MemoList } from "./components/MemoList";
-import { useState } from "react";
+import { Dispatch, createContext, useState } from "react";
+
+export type memoContextType = {
+  memoArray: string[];
+  setMemoArray: Dispatch<React.SetStateAction<string[]>>;
+};
+
+export const memoContext = createContext<memoContextType>(
+  {} as {
+    memoArray: string[];
+    setMemoArray: Dispatch<React.SetStateAction<string[]>>;
+  }
+);
 
 export const App = () => {
   const [memoArray, setMemoArray] = useState<string[]>([]);
+
+  const contextValue = {
+    memoArray,
+    setMemoArray,
+  };
+
   return (
     <>
       <Grid container justifyContent="center">
@@ -14,12 +32,16 @@ export const App = () => {
       </Grid>
       <Grid container justifyContent="center" sx={{ marginTop: "50px" }}>
         <Grid item>
-          <InputMemo memoArray={memoArray} setMemoArray={setMemoArray} />
+          <memoContext.Provider value={contextValue}>
+            <InputMemo />
+          </memoContext.Provider>
         </Grid>
       </Grid>
       <Grid container justifyContent="center" sx={{ marginTop: "30px" }}>
         <Grid item>
-          <MemoList memoArray={memoArray} setMemoArray={setMemoArray} />
+          <memoContext.Provider value={contextValue}>
+            <MemoList />
+          </memoContext.Provider>
         </Grid>
       </Grid>
     </>

@@ -6,14 +6,13 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import { Dispatch, useEffect } from "react";
+import { Dispatch, useContext, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { memoContext } from "../App";
 
 export type MemoEditDialogProps = {
   memoEditDialogOpen: boolean;
   memoEdtOnClose: () => void;
-  memoArray: string[];
-  setMemoArray: Dispatch<React.SetStateAction<string[]>>;
   memoIndex: number;
   setMemoEditDialogOpen: Dispatch<React.SetStateAction<boolean>>;
 };
@@ -26,11 +25,11 @@ export const MemoEditDialog = (props: MemoEditDialogProps) => {
   const {
     memoEditDialogOpen,
     memoEdtOnClose,
-    memoArray,
     memoIndex,
-    setMemoArray,
     setMemoEditDialogOpen,
   } = props;
+
+  const { memoArray, setMemoArray } = useContext(memoContext);
 
   const { control, getValues, setValue } = useForm<memoEdit>({
     defaultValues: { memoEdt: memoArray[memoIndex] },
