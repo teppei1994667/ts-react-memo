@@ -1,15 +1,10 @@
 import { Button, Grid, TextField } from "@mui/material";
 import { useContext } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { memoContext } from "../App";
+import { memoInput } from "../type/type";
+import { memoContext } from "../context/memoContext";
 
-type memoInput = {
-  memo: string;
-};
-
-export type InputMemoProps = {};
-
-export const InputMemo = (props: InputMemoProps) => {
+export const InputMemo = () => {
   const { control, getValues, reset } = useForm<memoInput>({
     defaultValues: { memo: "" },
   });

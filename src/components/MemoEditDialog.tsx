@@ -6,20 +6,10 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import { Dispatch, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { memoContext } from "../App";
-
-export type MemoEditDialogProps = {
-  memoEditDialogOpen: boolean;
-  memoEdtOnClose: () => void;
-  memoIndex: number;
-  setMemoEditDialogOpen: Dispatch<React.SetStateAction<boolean>>;
-};
-
-type memoEdit = {
-  memoEdt: string;
-};
+import { MemoEditDialogProps, memoEdit } from "../type/type";
+import { memoContext } from "../context/memoContext";
 
 export const MemoEditDialog = (props: MemoEditDialogProps) => {
   const {
@@ -35,8 +25,10 @@ export const MemoEditDialog = (props: MemoEditDialogProps) => {
     defaultValues: { memoEdt: memoArray[memoIndex] },
   });
 
+  //memoArrayの変更をformに適用
   useEffect(() => {
     setValue("memoEdt", memoArray[memoIndex]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [memoArray]);
 
   //メモ編集ボタンのクリックイベント

@@ -1,12 +1,10 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import { MemoItem } from "./MemoItem";
-import { Dispatch, useContext } from "react";
-import { memoContext } from "../App";
+import { useContext } from "react";
+import { memoContext } from "../context/memoContext";
 
-export type MemoListfProps = {};
-
-export const MemoList = (props: MemoListfProps) => {
-  const { memoArray, setMemoArray } = useContext(memoContext);
+export const MemoList = () => {
+  const { memoArray } = useContext(memoContext);
   return (
     <>
       <Paper

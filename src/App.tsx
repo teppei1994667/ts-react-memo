@@ -1,19 +1,8 @@
 import { Grid, Typography } from "@mui/material";
 import { InputMemo } from "./components/InputMemo";
 import { MemoList } from "./components/MemoList";
-import { Dispatch, createContext, useState } from "react";
-
-export type memoContextType = {
-  memoArray: string[];
-  setMemoArray: Dispatch<React.SetStateAction<string[]>>;
-};
-
-export const memoContext = createContext<memoContextType>(
-  {} as {
-    memoArray: string[];
-    setMemoArray: Dispatch<React.SetStateAction<string[]>>;
-  }
-);
+import { useState } from "react";
+import { memoContext } from "./context/memoContext";
 
 export const App = () => {
   const [memoArray, setMemoArray] = useState<string[]>([]);
