@@ -1,16 +1,16 @@
 import { Button, Grid, Typography } from "@mui/material";
-import { Dispatch, useState } from "react";
+import { Dispatch, useContext, useState } from "react";
 import { MemoEditDialog } from "./MemoEditDialog";
+import { memoContext } from "../App";
 
 export type MemoItemProps = {
   memoItem: string;
   memoIndex: number;
-  memoArray: string[];
-  setMemoArray: Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const MemoItem = (props: MemoItemProps) => {
-  const { memoItem, memoIndex, memoArray, setMemoArray } = props;
+  const { memoItem, memoIndex } = props;
+  const { memoArray, setMemoArray } = useContext(memoContext);
 
   const [memoEditDialogOpen, setMemoEditDialogOpen] = useState(false);
 
@@ -58,8 +58,6 @@ export const MemoItem = (props: MemoItemProps) => {
       <MemoEditDialog
         memoEditDialogOpen={memoEditDialogOpen}
         memoEdtOnClose={memoEdtOnClose}
-        memoArray={memoArray}
-        setMemoArray={setMemoArray}
         memoIndex={memoIndex}
         setMemoEditDialogOpen={setMemoEditDialogOpen}
       />

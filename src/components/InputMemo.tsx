@@ -1,22 +1,20 @@
 import { Button, Grid, TextField } from "@mui/material";
-import { Dispatch } from "react";
+import { useContext } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { memoContext } from "../App";
 
 type memoInput = {
   memo: string;
 };
 
-export type InputMemoProps = {
-  memoArray: string[];
-  setMemoArray: Dispatch<React.SetStateAction<string[]>>;
-};
+export type InputMemoProps = {};
 
 export const InputMemo = (props: InputMemoProps) => {
   const { control, getValues, reset } = useForm<memoInput>({
     defaultValues: { memo: "" },
   });
 
-  const { memoArray, setMemoArray } = props;
+  const { memoArray, setMemoArray } = useContext(memoContext);
 
   // メモ追加ボタンのクリックイベント
   const addMemoOnClick = () => {
