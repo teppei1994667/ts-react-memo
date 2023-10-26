@@ -8,8 +8,8 @@ import {
 } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { memoContext } from "../App";
 import { MemoEditDialogProps, memoEdit } from "../type/type";
+import { memoContext } from "../context/memoContext";
 
 export const MemoEditDialog = (props: MemoEditDialogProps) => {
   const {

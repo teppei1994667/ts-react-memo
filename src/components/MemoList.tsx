@@ -1,7 +1,7 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import { MemoItem } from "./MemoItem";
 import { useContext } from "react";
-import { memoContext } from "../App";
+import { memoContext } from "../context/memoContext";
 
 export const MemoList = () => {
   const { memoArray } = useContext(memoContext);

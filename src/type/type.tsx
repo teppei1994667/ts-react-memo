@@ -18,7 +18,7 @@ export type MemoEditDialogProps = {
   memoEditDialogOpen: boolean;
   memoEdtOnClose: () => void;
   memoIndex: number;
-  setMemoEditDialogOpen: Dispatch<React.SetStateAction<boolean>>;
+  setMemoEditDialogOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export type memoEdit = {
