@@ -2,10 +2,7 @@ import { Button, Grid, TextField } from "@mui/material";
 import { useContext } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { memoContext } from "../App";
-
-type memoInput = {
-  memo: string;
-};
+import { memoInput } from "../type/type";
 
 export type InputMemoProps = {};
 

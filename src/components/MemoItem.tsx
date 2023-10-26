@@ -1,12 +1,8 @@
 import { Button, Grid, Typography } from "@mui/material";
-import { Dispatch, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { MemoEditDialog } from "./MemoEditDialog";
 import { memoContext } from "../App";
-
-export type MemoItemProps = {
-  memoItem: string;
-  memoIndex: number;
-};
+import { MemoItemProps } from "../type/type";
 
 export const MemoItem = (props: MemoItemProps) => {
   const { memoItem, memoIndex } = props;
