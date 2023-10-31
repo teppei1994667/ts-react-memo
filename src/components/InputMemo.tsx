@@ -17,14 +17,26 @@ export const InputMemo = () => {
     memoForm.reset();
   };
 
+  console.log("エラー", memoForm.formState.errors.memo?.message);
+
   return (
     <Grid container>
       <Grid item sx={{ width: "400px" }}>
         <Controller
           name="memo"
           control={memoForm.control}
-          render={({ field }) => (
-            <TextField {...field} fullWidth label="メモ" variant="outlined" />
+          rules={{
+            required: "入力必須項目です",
+          }}
+          render={({ field, formState: { errors } }) => (
+            <TextField
+              {...field}
+              fullWidth
+              label="メモ"
+              variant="outlined"
+              error={!!errors.memo}
+              helperText={errors.memo && errors.memo.message}
+            />
           )}
         />
       </Grid>
@@ -32,7 +44,11 @@ export const InputMemo = () => {
         item
         sx={{ marginLeft: "50px", display: "flex", alignItems: "center" }}
       >
-        <Button id="addMemo" variant="outlined" onClick={addMemoOnClick}>
+        <Button
+          id="addMemo"
+          variant="outlined"
+          onClick={memoForm.handleSubmit(addMemoOnClick)}
+        >
           追加
         </Button>
       </Grid>
