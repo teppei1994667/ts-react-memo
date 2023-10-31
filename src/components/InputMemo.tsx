@@ -5,7 +5,7 @@ import { memoInput } from "../type/type";
 import { memoContext } from "../context/memoContext";
 
 export const InputMemo = () => {
-  const { control, getValues, reset } = useForm<memoInput>({
+  const memoForm = useForm<memoInput>({
     defaultValues: { memo: "" },
   });
 
@@ -13,8 +13,8 @@ export const InputMemo = () => {
 
   // メモ追加ボタンのクリックイベント
   const addMemoOnClick = () => {
-    setMemoArray([...memoArray, getValues("memo")]);
-    reset();
+    setMemoArray([...memoArray, memoForm.getValues("memo")]);
+    memoForm.reset();
   };
 
   return (
@@ -22,7 +22,7 @@ export const InputMemo = () => {
       <Grid item sx={{ width: "400px" }}>
         <Controller
           name="memo"
-          control={control}
+          control={memoForm.control}
           render={({ field }) => (
             <TextField {...field} fullWidth label="メモ" variant="outlined" />
           )}

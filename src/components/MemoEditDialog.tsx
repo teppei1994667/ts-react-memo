@@ -21,20 +21,20 @@ export const MemoEditDialog = (props: MemoEditDialogProps) => {
 
   const { memoArray, setMemoArray } = useContext(memoContext);
 
-  const { control, getValues, setValue } = useForm<memoEdit>({
+  const memoEdtForm = useForm<memoEdit>({
     defaultValues: { memoEdt: memoArray[memoIndex] },
   });
 
   //memoArrayの変更をformに適用
   useEffect(() => {
-    setValue("memoEdt", memoArray[memoIndex]);
+    memoEdtForm.setValue("memoEdt", memoArray[memoIndex]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [memoArray]);
 
   //メモ編集ボタンのクリックイベント
   const editMemoOnClick = (memoIndex: number) => {
     const newMemos = [...memoArray];
-    newMemos.splice(memoIndex, 1, getValues("memoEdt"));
+    newMemos.splice(memoIndex, 1, memoEdtForm.getValues("memoEdt"));
     setMemoArray(newMemos);
     setMemoEditDialogOpen(false);
   };
@@ -48,7 +48,7 @@ export const MemoEditDialog = (props: MemoEditDialogProps) => {
             <Grid item sx={{ width: "400px" }}>
               <Controller
                 name="memoEdt"
-                control={control}
+                control={memoEdtForm.control}
                 render={({ field }) => (
                   <TextField {...field} fullWidth variant="outlined" />
                 )}
