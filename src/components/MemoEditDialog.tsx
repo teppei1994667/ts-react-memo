@@ -7,7 +7,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useContext, useEffect } from "react";
-import { Controller, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { MemoEditDialogProps, memoEdit } from "../type/type";
 import { memoContext } from "../context/memoContext";
 import { ControlledTextField } from "../share/ControlledTextField";
