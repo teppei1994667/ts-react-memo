@@ -7,9 +7,10 @@ import {
   TextField,
 } from "@mui/material";
 import { useContext, useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, FormProvider, useForm } from "react-hook-form";
 import { MemoEditDialogProps, memoEdit } from "../type/type";
 import { memoContext } from "../context/memoContext";
+import { ControlledTextField } from "../share/ControlledTextField";
 
 export const MemoEditDialog = (props: MemoEditDialogProps) => {
   const {
@@ -46,13 +47,9 @@ export const MemoEditDialog = (props: MemoEditDialogProps) => {
         <DialogContent>
           <Grid container alignItems="center">
             <Grid item sx={{ width: "400px" }}>
-              <Controller
-                name="memoEdt"
-                control={memoEdtForm.control}
-                render={({ field }) => (
-                  <TextField {...field} fullWidth variant="outlined" />
-                )}
-              />
+              <FormProvider {...memoEdtForm}>
+                <ControlledTextField fullWidth name="memoEdt" />
+              </FormProvider>
             </Grid>
             <Grid item sx={{ marginLeft: "20px" }}>
               <Button

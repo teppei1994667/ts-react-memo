@@ -1,8 +1,9 @@
 import { Button, Grid, TextField } from "@mui/material";
 import { useContext } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { memoInput } from "../type/type";
 import { memoContext } from "../context/memoContext";
+import { ControlledTextField } from "../share/ControlledTextField";
 
 export const InputMemo = () => {
   const memoForm = useForm<memoInput>({
@@ -22,23 +23,9 @@ export const InputMemo = () => {
   return (
     <Grid container>
       <Grid item sx={{ width: "400px" }}>
-        <Controller
-          name="memo"
-          control={memoForm.control}
-          rules={{
-            required: "入力必須項目です",
-          }}
-          render={({ field, formState: { errors } }) => (
-            <TextField
-              {...field}
-              fullWidth
-              label="メモ"
-              variant="outlined"
-              error={!!errors.memo}
-              helperText={errors.memo && errors.memo.message}
-            />
-          )}
-        />
+        <FormProvider {...memoForm}>
+          <ControlledTextField fullWidth name="memo" />
+        </FormProvider>
       </Grid>
       <Grid
         item
