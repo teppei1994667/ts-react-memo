@@ -1,11 +1,12 @@
-import { Button, Grid, TextField } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { useContext } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { memoInput } from "../type/type";
 import { memoContext } from "../context/memoContext";
+import { ControlledTextField } from "../share/ControlledTextField";
 
 export const InputMemo = () => {
-  const { control, getValues, reset } = useForm<memoInput>({
+  const memoForm = useForm<memoInput>({
     defaultValues: { memo: "" },
   });
 
@@ -13,26 +14,28 @@ export const InputMemo = () => {
 
   // メモ追加ボタンのクリックイベント
   const addMemoOnClick = () => {
-    setMemoArray([...memoArray, getValues("memo")]);
-    reset();
+    setMemoArray([...memoArray, memoForm.getValues("memo")]);
+    memoForm.reset();
   };
+
+  console.log("エラー", memoForm.formState.errors.memo?.message);
 
   return (
     <Grid container>
       <Grid item sx={{ width: "400px" }}>
-        <Controller
-          name="memo"
-          control={control}
-          render={({ field }) => (
-            <TextField {...field} fullWidth label="メモ" variant="outlined" />
-          )}
-        />
+        <FormProvider {...memoForm}>
+          <ControlledTextField fullWidth name="memo" />
+        </FormProvider>
       </Grid>
       <Grid
         item
         sx={{ marginLeft: "50px", display: "flex", alignItems: "center" }}
       >
-        <Button id="addMemo" variant="outlined" onClick={addMemoOnClick}>
+        <Button
+          id="addMemo"
+          variant="outlined"
+          onClick={memoForm.handleSubmit(addMemoOnClick)}
+        >
           追加
         </Button>
       </Grid>
