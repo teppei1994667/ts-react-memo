@@ -6,7 +6,7 @@ export type ControlledTextFieldProps = Omit<TextFieldProps, "name"> & {
 };
 
 export const ControlledTextField = (props: ControlledTextFieldProps) => {
-  const { fullWidth, label, variant, name } = props;
+  const { fullWidth, label, variant, name, ...restProps } = props;
   const { control } = useFormContext();
 
   return (
@@ -24,6 +24,7 @@ export const ControlledTextField = (props: ControlledTextFieldProps) => {
           variant={variant}
           error={!!errors.memo}
           helperText={errors.memo?.message as string}
+          {...restProps}
         />
       )}
     />

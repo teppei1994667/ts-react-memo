@@ -24,7 +24,7 @@ export const InputMemo = () => {
     <Grid container>
       <Grid item sx={{ width: "400px" }}>
         <FormProvider {...memoForm}>
-          <ControlledTextField fullWidth name="memo" />
+          <ControlledTextField fullWidth name="memo" autoFocus />
         </FormProvider>
       </Grid>
       <Grid
