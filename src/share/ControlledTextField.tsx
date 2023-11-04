@@ -23,7 +23,7 @@ export const ControlledTextField = (props: ControlledTextFieldProps) => {
           label={label}
           variant={variant}
           error={!!errors.memo}
-          helperText={errors.text?.message as string}
+          helperText={errors.memo?.message as string}
         />
       )}
     />
