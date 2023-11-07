@@ -15,7 +15,8 @@ export const MemoItem = (props: MemoItemProps) => {
   const EdtBtnId = `memoEdt${memoIndex}`;
 
   //編集ボタンのクリックイベント
-  const memoEdtOnClick = () => {
+  const memoEdtOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("event", event);
     setMemoEditDialogOpen(true);
   };
 

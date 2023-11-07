@@ -31,7 +31,7 @@ export const MemoEditDialog = (props: MemoEditDialogProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [memoArray]);
 
-  //メモ編集ボタンのクリックイベント
+  //変更ボタンのクリックイベント
   const editMemoOnClick = (memoIndex: number) => {
     const newMemos = [...memoArray];
     newMemos.splice(memoIndex, 1, memoEdtForm.getValues("memoEdt"));
